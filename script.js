@@ -54,16 +54,25 @@ function search(title){
         console.log(responseData);
 
         var temp = [];
-        for (var i = 0; i < responseData.results.length; ++i) {
-          if(Object.keys(responseData.results[i]).length > 7){
-            temp.push(responseData.results[i]);
-          }
+        if (responseData.results.length !== 0) {
+            for (var i = 0; i < responseData.results.length; ++i) {
+                if(Object.keys(responseData.results[i]).length > 7){
+                    temp.push(responseData.results[i]);
+                }
+            }
+            var newObject = { temp };
+            var source   = $("#entry-template").html();
+            var template = Handlebars.compile(source);
+            $('.loaded').append(template({objects:newObject.temp}));
+        } else {
+            var newDiv = document.createElement("div");
+            newDiv.className = "panel-danger text-center";
+            newDiv.innerHTML = "<span class='text-center'>Sorry, we haven't information corresponding your request :(</span>";
+            
+            var beforeDiv = document.getElementById("header");
+            document.body.insertBefore(newDiv, beforeDiv);
         }
-        var newObject = { temp };
-
-        var source   = $("#entry-template").html();
-        var template = Handlebars.compile(source);
-        $('.loaded').append(template({objects:newObject.temp}));
+        
       }
     }
     xhr.onerror = function(){
