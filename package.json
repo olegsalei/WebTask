@@ -1,0 +1,16 @@
+{
+  "name": "Discogs api",
+  "version": "0.1.0",
+  "description": "",
+  "main": "server.js",
+  "author": "Oleg Salei",
+  "license": "ISC",
+  "devDependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1",
+    "node-static": "^0.7.9"
+  },
+  "dependencies": {
+    "handlebars": "^4.0.5"
+  }
+}
