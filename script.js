@@ -4,10 +4,21 @@ $(document).ready(function(){
   $("#search-form").on('submit', function(event){
     event.preventDefault();
     var title = $("#title").val();
+    $(".loaded").remove();
+    addNewDiv();
 
     search(title);  
   });
 });
+
+function addNewDiv(){
+    var newDiv = document.createElement("div");
+      newDiv.className = "container-fluid loaded";
+        newDiv.innerHTML = "";
+
+    var beforeDiv = document.getElementById("header");
+    document.body.insertBefore(newDiv, beforeDiv);
+}
 
 function search(title){
     var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
