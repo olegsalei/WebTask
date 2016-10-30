@@ -25,9 +25,30 @@ function search(title){
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://api.discogs.com/database/search?q=' + title + '&sort_order=desc&key=gkBgtDWOpHTsEJulHJja&secret=HDHRcjWlagqyjsGamTTPJSNlnUgKUkyV', true);
     xhr.onload = function(){
-      /*if(this.status == 422){
+      if(this.status == 500){
+        console.log("500 Internal Server Error");
+      }
+      if(this.status == 422){
         console.log("422 Unprocessable Entity");
-      }*/
+      }
+      if(this.status == 405){
+        console.log("405 Method Not Allowed");
+      }
+      if(this.status == 404){
+        console.log("404 Not Found");
+      }
+      if(this.status == 403){
+        console.log("403 Forbidden");
+      }
+      if(this.status == 401){
+        console.log("401 Unauthorized");
+      }
+      if(this.status == 204){
+        console.log("204 No Content");
+      }
+      if(this.status == 201){
+        console.log("201 Continue");
+      }
       if(this.status == 200){
         var responseData = JSON.parse(xhr.responseText);
         console.log(responseData);
